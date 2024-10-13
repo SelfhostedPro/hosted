@@ -3,13 +3,23 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch ./server.ts",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/_init/entry-server.ts --outDir dist/server"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@vitejs/plugin-vue": "^5.1.4",
+    "elysia": "latest",
+    "elysia-vite-server": "^0.0.1",
+    "pinia": "^2.2.4",
+    "vite": "^5.4.8",
+    "vite-plugin-vue-devtools": "^7.4.6",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
+    "@types/bun": "^1.1.11",
     "bun-types": "latest"
   },
-  "module": "src/index.js"
+  "module": "server.ts"
 }
